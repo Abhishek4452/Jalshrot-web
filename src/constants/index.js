@@ -87,36 +87,6 @@ export const EMPTY_SOURCE = {
 
 export const GALLERY = [
   {
-    src: 'https://images.unsplash.com/photo-1433086966358-54859d0ed716?auto=format&fit=crop&w=1200&q=80',
-    title: 'Mountain stream',
-    caption: 'A perennial stream feeding the lower villages of Pauri Garhwal.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80',
-    title: 'Headwater lake',
-    caption: 'High-altitude source mapping during the field survey.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80',
-    title: 'Forest catchment',
-    caption: 'Forest cover that recharges the spring network.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80',
-    title: 'Catchment survey',
-    caption: 'Documenting vegetation along a recharge slope.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1552083375-1447ce886485?auto=format&fit=crop&w=1200&q=80',
-    title: 'River monitoring',
-    caption: 'Flow measurement at a downstream resilience site.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
-    title: 'Himalayan ridge',
-    caption: 'The watershed that supplies the study region.',
-  },
-  {
     src: '/images/kandol-gaon-site-b.jpeg',
     title: 'Kandol Gaon spring survey',
     caption: 'A field team member at a spring site in Kandol Gaon, Uttarakhand.',
