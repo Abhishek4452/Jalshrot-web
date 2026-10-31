@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FiMail, FiMapPin, FiPhone, FiSend, FiInfo, FiArrowRight } from 'react-icons/fi';
+import { FiMail, FiMapPin, FiSend } from 'react-icons/fi';
 import PageHeader from '../components/layout/PageHeader';
 import Button from '../components/ui/Button';
 import { Field, Input, Textarea } from '../components/ui/Field';
@@ -15,12 +14,6 @@ const CONTACT_CARDS = [
     href: `mailto:${SITE.email}`,
   },
   {
-    icon: FiPhone,
-    title: 'Project office',
-    value: '+91 135 000 0000',
-    href: 'tel:+911350000000',
-  },
-  {
     icon: FiMapPin,
     title: 'Institution',
     value: SITE.institution,
@@ -30,25 +23,22 @@ const CONTACT_CARDS = [
 
 export default function ContactPage() {
   const toast = useToast();
-  const [form, setForm] = useState({ name: '', email: '', subject: 'General enquiry', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
 
   const update = (key, value) => setForm((current) => ({ ...current, [key]: value }));
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const body = `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`;
-    window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(
-      `[JalSrot] ${form.subject}`
-    )}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${SITE.email}?body=${encodeURIComponent(body)}`;
     toast.success('Opening your email app with the message ready to send.');
   };
 
   return (
     <>
       <PageHeader
-        eyebrow="Contact & support"
-        title="Get in touch"
-        description="Questions about the data, a source to report, or a collaboration idea — we'd like to hear from you."
+        eyebrow="Contact"
+        eyebrowClassName="text-[32px]"
       />
 
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -72,31 +62,13 @@ export default function ContactPage() {
               </a>
             ))}
 
-            <div className="rounded-xl border border-brand-200 bg-brand-50/70 p-5 dark:border-brand-500/30 dark:bg-brand-500/10">
-              <h3 className="flex items-center gap-2 text-sm font-semibold text-brand-900 dark:text-brand-200">
-                <FiInfo size={15} /> Spotted incorrect data?
-              </h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-brand-800/80 dark:text-brand-100/80">
-                If a source is missing, dried up, or has the wrong details, open its record and send us
-                the source name and ID so we can verify it.
-              </p>
-              <Link
-                to="/sources"
-                className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-800 hover:underline dark:text-brand-200"
-              >
-                Browse water sources <FiArrowRight size={12} />
-              </Link>
-            </div>
           </div>
 
           <form
             onSubmit={handleSubmit}
             className="rounded-xl border border-ink-200 bg-white p-5 sm:p-6 dark:border-ink-800 dark:bg-ink-900"
           >
-            <h2 className="text-lg font-semibold text-ink-900 dark:text-white">Send a message</h2>
-            <p className="mt-1 text-sm text-ink-500 dark:text-ink-400">
-              We usually respond within two working days.
-            </p>
+            <h2 className="text-lg font-semibold text-ink-900 dark:text-white">Have a query?</h2>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-2">
               <Field label="Your name" required htmlFor="contact-name">
@@ -119,14 +91,6 @@ export default function ContactPage() {
                 />
               </Field>
             </div>
-
-            <Field label="Subject" className="mt-3" htmlFor="contact-subject">
-              <Input
-                id="contact-subject"
-                value={form.subject}
-                onChange={(event) => update('subject', event.target.value)}
-              />
-            </Field>
 
             <Field label="Message" className="mt-3" required htmlFor="contact-message">
               <Textarea

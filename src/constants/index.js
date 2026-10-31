@@ -6,7 +6,7 @@ export const SITE = {
   title:
     'Smart and Sustainable Water Resource Management for Himalayan Communities and Downstream Resilience in Uttarakhand',
   institution: 'G.B. Pant Institute of Engineering & Technology, Pauri Garhwal',
-  email: 'contact@jalsrot.in',
+  email: 'jalsrotuk@gmail.com',
 };
 
 export const NAV_LINKS = [
@@ -16,7 +16,7 @@ export const NAV_LINKS = [
   { label: 'Map View', to: '/map' },
   { label: 'Research Team', to: '/research' },
   { label: 'Gallery', to: '/gallery' },
-  { label: 'Contact & Support', to: '/contact' },
+  { label: 'Contact', to: '/contact' },
 ];
 
 export const SOURCE_TYPES = [
@@ -115,6 +115,36 @@ export const GALLERY = [
     src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
     title: 'Himalayan ridge',
     caption: 'The watershed that supplies the study region.',
+  },
+  {
+    src: '/images/kandol-gaon-site-b.jpeg',
+    title: 'Kandol Gaon spring survey',
+    caption: 'A field team member at a spring site in Kandol Gaon, Uttarakhand.',
+  },
+  {
+    src: '/images/unchar-site-f.jpeg',
+    title: 'Unchar Site F',
+    caption: 'A spring and surrounding catchment documented during fieldwork in Unchar.',
+  },
+  {
+    src: '/images/unchar-site-d.jpeg',
+    title: 'Unchar Site D',
+    caption: 'A water source and nearby vegetation at the Unchar field site.',
+  },
+  {
+    src: '/images/pauri-roadside-water-source.jpeg',
+    title: 'Pauri roadside water source',
+    caption: 'Water flowing from a roadside outlet in Pauri, Uttarakhand.',
+  },
+  {
+    src: '/images/pauri-market-water-tank.jpeg',
+    title: 'Pauri market water tank',
+    caption: 'Water storage infrastructure documented in Pauri.',
+  },
+  {
+    src: '/images/pauri-field-survey.jpeg',
+    title: 'Pauri field survey',
+    caption: 'Researchers documenting a water source during fieldwork in Pauri.',
   },
 ];
 

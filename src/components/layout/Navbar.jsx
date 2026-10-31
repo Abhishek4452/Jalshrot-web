@@ -9,12 +9,8 @@ import { useTheme } from '../../context/ThemeContext';
 import { useAuth } from '../../context/AuthContext';
 import { useAuthDialog } from '../../context/AuthDialogContext';
 
-const linkClasses = ({ isActive }) =>
-  `relative rounded-md px-2.5 py-2 text-[13px] font-semibold transition ${
-    isActive
-      ? 'text-brand-700 dark:text-brand-300'
-      : 'text-ink-600 hover:text-brand-700 dark:text-ink-300 dark:hover:text-white'
-  }`;
+const linkClasses =
+  'relative rounded-md px-2.5 py-2 text-[18px] font-semibold text-ink-900 transition hover:text-ink-900 dark:text-white dark:hover:text-white';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);

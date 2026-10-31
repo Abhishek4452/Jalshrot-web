@@ -1,122 +1,179 @@
-import { FiBookOpen, FiExternalLink, FiMail, FiMapPin, FiUsers } from 'react-icons/fi';
 import PageHeader from '../components/layout/PageHeader';
-import { SITE, TEAM } from '../constants';
+import { SITE } from '../constants';
 
-const FOCUS = [
+const INSTITUTIONAL_LEADERS = [
   {
-    title: 'Hydrology & spring recharge',
-    text: 'Understanding how forest cover, slope and rainfall translate into spring discharge across the watershed.',
+    name: 'Prof. (Dr.) V. K. Banga',
+    role: 'Director',
+    institution: 'Govind Ballabh Pant Institute of Engineering & Technology, Pauri Garhwal',
+    initials: 'VB',
+    image: '/images/vk-banga.png',
   },
   {
-    title: 'Water quality & public health',
-    text: 'Tracking physical and chemical parameters to flag sources that need treatment or protection.',
-  },
-  {
-    title: 'Community water governance',
-    text: 'Working with village institutions on maintenance, ownership and equitable access.',
-  },
-  {
-    title: 'Open geospatial data',
-    text: 'Publishing source locations and attributes through open standards and OpenStreetMap.',
+    name: 'Dr. Mamta Baunthiyal',
+    role: 'Dean Research & Development',
+    institution: 'Govind Ballabh Pant Institute of Engineering & Technology, Pauri Garhwal',
+    initials: 'MB',
+    image: '/images/dr-mamta-baunthiyal.jpg',
   },
 ];
+
+const SCIENTIFIC_LEADERS = [
+  {
+    name: 'Dr. Pushkar Praveen',
+    role: 'Principal Investigator',
+    position: 'Assistant Professor',
+    department: 'Department of Electronics & Communication Engineering',
+    initials: 'PP',
+    image: '/images/dr-pushkar-praveen.jpg',
+  },
+  {
+    name: 'Dr. Agya Ram Verma',
+    role: 'Co-Principal Investigator',
+    position: 'Assistant Professor',
+    department: 'Department of Electronics & Communication Engineering',
+    initials: 'AV',
+    image: '/images/dr-agya-ram-verma.jpg',
+  },
+  {
+    name: 'Dr. Papendra Kumar',
+    role: 'Co-Principal Investigator',
+    position: 'Assistant Professor',
+    department: 'Department of Computer Science & Engineering',
+    initials: 'PK',
+    image: '/images/dr-papendra-kumar.jpg',
+  },
+];
+
+const IMPLEMENTATION_TEAM = [
+  { name: 'Abhishek Pokhriyal', initials: 'AP' },
+  { name: 'Alisha Ziya Kavish', initials: 'AZ' },
+  { name: 'Meet Chauhan', initials: 'MC' },
+];
+
+const institutionName = 'G.B. Pant Institute of Engineering & Technology, Uttarakhand';
+
+function SectionHeading({ eyebrow, title }) {
+  return (
+    <div className="mb-5">
+      <p className="text-xs font-bold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-400">
+        {eyebrow}
+      </p>
+      <h2 className="mt-1.5 text-2xl font-bold tracking-tight text-ink-900 dark:text-white sm:text-[28px]">
+        {title}
+      </h2>
+    </div>
+  );
+}
+
+function Avatar({ initials, image, alt, large = false, medium = false }) {
+  return (
+    <span
+      className={`grid shrink-0 place-items-center overflow-hidden rounded-full border-4 border-brand-50 bg-brand-100 font-display font-bold text-brand-700 dark:border-brand-500/15 dark:bg-brand-500/20 dark:text-brand-200 ${
+        large ? 'h-24 w-24 text-2xl' : medium ? 'h-[84px] w-[84px] text-xl' : 'h-14 w-14 text-base'
+      }`}
+    >
+      {image ? (
+        <img src={image} alt={alt} className="h-full w-full object-cover" />
+      ) : (
+        <span aria-hidden="true">{initials}</span>
+      )}
+    </span>
+  );
+}
 
 export default function ResearchPage() {
   return (
     <>
       <PageHeader
         eyebrow="Research team"
-        title="People behind the registry"
-        description="A interdisciplinary team from G.B. Pant Institute of Engineering & Technology, Pauri Garhwal."
+        title="People Behind the Project"
+        description={`An interdisciplinary faculty and student research team from ${SITE.institution}.`}
+        contentClassName="max-w-none"
+        containerClassName="max-w-[1440px]"
+        descriptionClassName="text-[19px] lg:whitespace-nowrap"
       />
 
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {TEAM.map((member) => (
-            <div
-              key={`${member.role}-${member.name}`}
-              className="rounded-xl border border-ink-200 bg-white p-5 text-center dark:border-ink-800 dark:bg-ink-900"
-            >
-              <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-brand-600/10 font-display text-lg font-bold text-brand-700 dark:bg-brand-500/15 dark:text-brand-300">
-                {member.initials}
-              </span>
-              <h3 className="mt-3 text-sm font-semibold text-ink-900 dark:text-white">{member.name}</h3>
-              <p className="text-xs font-semibold uppercase tracking-wide text-brand-600 dark:text-brand-300">
-                {member.role}
-              </p>
-              <p className="mt-2 text-xs leading-relaxed text-ink-500 dark:text-ink-400">{member.focus}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-12 grid gap-8 lg:grid-cols-[1.15fr_1fr]">
-          <section>
-            <h2 className="text-xl font-bold text-ink-900 dark:text-white">Research focus areas</h2>
-            <div className="mt-4 space-y-3">
-              {FOCUS.map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-xl border border-ink-200 bg-white p-4 dark:border-ink-800 dark:bg-ink-900"
-                >
-                  <h3 className="text-sm font-semibold text-ink-900 dark:text-white">{item.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-ink-500 dark:text-ink-400">{item.text}</p>
+      <div className="mx-auto max-w-[1440px] space-y-20 px-4 py-12 sm:px-6 lg:px-8">
+        <section>
+          <SectionHeading eyebrow="Institutional governance" title="Institute Leadership" />
+          <div className="grid gap-4 lg:grid-cols-2">
+            {INSTITUTIONAL_LEADERS.map((person) => (
+              <article
+                key={person.name}
+                className="flex items-center gap-4 rounded-2xl border border-ink-200 bg-white p-5 shadow-sm dark:border-ink-800 dark:bg-ink-900 sm:p-6"
+              >
+                <Avatar initials={person.initials} image={person.image} alt={person.name} medium />
+                <div className="min-w-0">
+                  <span className="inline-flex rounded-full border border-brand-200 bg-brand-50 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-brand-700 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-300">
+                    {person.role}
+                  </span>
+                  <h3 className="mt-2 text-lg font-bold leading-snug text-ink-900 dark:text-white">
+                    {person.name}
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-ink-500 dark:text-ink-400">
+                    {person.institution}
+                  </p>
                 </div>
-              ))}
-            </div>
-          </section>
+              </article>
+            ))}
+          </div>
+        </section>
 
-          <section className="space-y-4">
-            <div className="rounded-xl border border-ink-200 bg-white p-5 dark:border-ink-800 dark:bg-ink-900">
-              <h2 className="flex items-center gap-2 text-sm font-semibold text-ink-900 dark:text-white">
-                <FiBookOpen size={15} className="text-brand-600" /> Outputs
-              </h2>
-              <ul className="mt-3 space-y-2.5 text-sm text-ink-600 dark:text-ink-300">
-                {[
-                  'Open water source registry for Uttarakhand',
-                  'Seasonal water quality monitoring reports',
-                  'Community training on source protection',
-                  'Policy briefs for local administration',
-                ].map((item) => (
-                  <li key={item} className="flex gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="rounded-xl border border-ink-200 bg-white p-5 dark:border-ink-800 dark:bg-ink-900">
-              <h2 className="flex items-center gap-2 text-sm font-semibold text-ink-900 dark:text-white">
-                <FiUsers size={15} className="text-brand-600" /> Collaboration
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-ink-500 dark:text-ink-400">
-                The project works with village water committees, district administration and student
-                volunteers. If you would like to collaborate, we would like to hear from you.
-              </p>
-              <a
-                href={`mailto:${SITE.email}`}
-                className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:underline dark:text-brand-300"
+        <section>
+          <SectionHeading
+            eyebrow="Scientific leadership"
+            title="Principal Investigators & Project Leadership"
+          />
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {SCIENTIFIC_LEADERS.map((person) => (
+              <article
+                key={person.name}
+                className="flex min-h-80 flex-col items-center rounded-2xl border border-ink-200 bg-white px-6 py-6 text-center shadow-sm dark:border-ink-800 dark:bg-ink-900"
               >
-                <FiMail size={14} /> {SITE.email}
-              </a>
-            </div>
+                <span className="inline-flex rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-brand-700 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-300">
+                  {person.role}
+                </span>
+                <Avatar initials={person.initials} image={person.image} alt={person.name} large />
+                <h3 className="mt-3 text-base font-bold text-ink-900 dark:text-white">
+                  {person.name}
+                </h3>
+                <p className="mt-1 text-xs font-bold uppercase tracking-wide text-brand-600 dark:text-brand-300">
+                  {person.position}
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-ink-600 dark:text-ink-300">
+                  {person.department}
+                </p>
+                <div className="mt-auto w-full border-t border-ink-100 pt-4 dark:border-ink-800">
+                  <p className="text-[11px] leading-relaxed text-ink-400">{institutionName}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
 
-            <div className="rounded-xl border border-ink-200 bg-white p-5 dark:border-ink-800 dark:bg-ink-900">
-              <h2 className="flex items-center gap-2 text-sm font-semibold text-ink-900 dark:text-white">
-                <FiMapPin size={15} className="text-brand-600" /> Institution
-              </h2>
-              <p className="mt-2 text-sm text-ink-500 dark:text-ink-400">{SITE.institution}</p>
-              <a
-                href="https://www.openstreetmap.org/"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 hover:underline dark:text-brand-300"
+        <section>
+          <SectionHeading eyebrow="Technical & field execution" title="Project Implementation Team" />
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {IMPLEMENTATION_TEAM.map((person) => (
+              <article
+                key={person.name}
+                className="flex items-center gap-4 rounded-2xl border border-ink-200 bg-white p-5 shadow-sm dark:border-ink-800 dark:bg-ink-900"
               >
-                Mapping data <FiExternalLink size={12} />
-              </a>
-            </div>
-          </section>
-        </div>
+                <span className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl border border-brand-200 bg-brand-50 font-display text-lg font-bold text-brand-700 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-300">
+                  {person.initials}
+                </span>
+                <div className="min-w-0">
+                  <h3 className="text-sm font-bold text-ink-900 dark:text-white">{person.name}</h3>
+                  <p className="mt-1 text-xs text-ink-500 dark:text-ink-400">
+                    Project Research &amp; Implementation
+                  </p>
+                  <p className="mt-1 text-[11px] leading-relaxed text-ink-400">{institutionName}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </>
   );

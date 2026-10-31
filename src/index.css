@@ -5,6 +5,7 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Sora", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --text-sm: 1rem;
 
   --color-brand-50: #eef8ff;
   --color-brand-100: #d9f0ff;

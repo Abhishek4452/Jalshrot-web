@@ -157,81 +157,86 @@ export default function SourcesPage() {
       />
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="rounded-xl border border-ink-200 bg-white p-4 shadow-soft dark:border-ink-800 dark:bg-ink-900">
-          <SourceFilters
-            filters={filters}
-            onChange={handleFilterChange}
-            onReset={resetFilters}
-            sources={sources}
-          />
-        </div>
-
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-2">
-          <p className="text-sm font-medium text-ink-500 dark:text-ink-400">
-            {loading
-              ? 'Loading sources…'
-              : `Showing ${filtered.length} source${filtered.length === 1 ? '' : 's'}${
-                  hasFilters ? ' matching your filters' : ''
-                }`}
-          </p>
-          <button
-            type="button"
-            onClick={reload}
-            className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-semibold text-ink-500 transition hover:bg-ink-100 hover:text-ink-800 dark:text-ink-400 dark:hover:bg-ink-800 dark:hover:text-white"
-          >
-            <FiRefreshCw size={12} /> Refresh
-          </button>
-        </div>
-
-        <div className="mt-3">
-          {loading ? (
-            <TableSkeleton rows={8} />
-          ) : error ? (
-            <EmptyState
-              icon={FiSearch}
-              title="Could not load water sources"
-              description={error}
-              action={
-                <Button variant="outline" onClick={reload} icon={<FiRefreshCw size={14} />}>
-                  Try again
-                </Button>
-              }
+        <div className="grid items-start gap-6 lg:grid-cols-[18rem_minmax(0,1fr)]">
+          <aside className="rounded-xl border border-ink-200 bg-white p-4 shadow-soft dark:border-ink-800 dark:bg-ink-900">
+            <SourceFilters
+              filters={filters}
+              onChange={handleFilterChange}
+              onReset={resetFilters}
+              sources={sources}
+              variant="stacked"
             />
-          ) : pageItems.length ? (
-            <SourceTable
-              sources={pageItems}
-              startIndex={(currentPage - 1) * PAGE_SIZE + 1}
-              onView={setSelected}
-              onEdit={canManageSources ? openEdit : undefined}
-              onDelete={canManageSources ? setDeleting : undefined}
-              readOnly={!canManageSources}
-            />
-          ) : (
-            <EmptyState
-              icon={FiSearch}
-              title={hasFilters ? 'No sources match your filters' : 'No water sources documented yet'}
-              description={
-                hasFilters
-                  ? 'Try a different district, resource type or search term.'
-                  : 'Once sources are added by an administrator they will appear here.'
-              }
-              action={
-                hasFilters ? (
-                  <Button variant="outline" onClick={resetFilters}>
-                    Clear filters
-                  </Button>
-                ) : null
-              }
-            />
-          )}
-        </div>
+          </aside>
 
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-          <p className="text-xs text-ink-400">
-            {filtered.length > 0 &&
-              `Showing ${(currentPage - 1) * PAGE_SIZE + 1}–${Math.min(currentPage * PAGE_SIZE, filtered.length)} of ${filtered.length}`}
-          </p>
-          <Pagination page={currentPage} totalPages={totalPages} onChange={setPage} />
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="text-sm font-medium text-ink-500 dark:text-ink-400">
+                {loading
+                  ? 'Loading sources…'
+                  : `Showing ${filtered.length} source${filtered.length === 1 ? '' : 's'}${
+                      hasFilters ? ' matching your filters' : ''
+                    }`}
+              </p>
+              <button
+                type="button"
+                onClick={reload}
+                className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-semibold text-ink-500 transition hover:bg-ink-100 hover:text-ink-800 dark:text-ink-400 dark:hover:bg-ink-800 dark:hover:text-white"
+              >
+                <FiRefreshCw size={12} /> Refresh
+              </button>
+            </div>
+
+            <div className="mt-3">
+              {loading ? (
+                <TableSkeleton rows={8} />
+              ) : error ? (
+                <EmptyState
+                  icon={FiSearch}
+                  title="Could not load water sources"
+                  description={error}
+                  action={
+                    <Button variant="outline" onClick={reload} icon={<FiRefreshCw size={14} />}>
+                      Try again
+                    </Button>
+                  }
+                />
+              ) : pageItems.length ? (
+                <SourceTable
+                  sources={pageItems}
+                  startIndex={(currentPage - 1) * PAGE_SIZE + 1}
+                  onView={setSelected}
+                  onEdit={canManageSources ? openEdit : undefined}
+                  onDelete={canManageSources ? setDeleting : undefined}
+                  readOnly={!canManageSources}
+                />
+              ) : (
+                <EmptyState
+                  icon={FiSearch}
+                  title={hasFilters ? 'No sources match your filters' : 'No water sources documented yet'}
+                  description={
+                    hasFilters
+                      ? 'Try a different district, resource type or search term.'
+                      : 'Once sources are added by an administrator they will appear here.'
+                  }
+                  action={
+                    hasFilters ? (
+                      <Button variant="outline" onClick={resetFilters}>
+                        Clear filters
+                      </Button>
+                    ) : null
+                  }
+                />
+              )}
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+              <p className="text-xs text-ink-400">
+                {filtered.length > 0 &&
+                  `Showing ${(currentPage - 1) * PAGE_SIZE + 1}–${Math.min(currentPage * PAGE_SIZE, filtered.length)} of ${filtered.length}`}
+              </p>
+              <Pagination page={currentPage} totalPages={totalPages} onChange={setPage} />
+            </div>
+          </div>
         </div>
       </div>
 

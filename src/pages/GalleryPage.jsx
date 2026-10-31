@@ -111,7 +111,11 @@ export default function GalleryPage() {
   const [deleteLoading, setDeleteLoading] = useState(false);
 
   const usingFallback = !loading && items.length === 0;
-  const media = usingFallback ? GALLERY.map(normalizeMedia) : items;
+  const defaultMedia = GALLERY.map(normalizeMedia);
+  const media = [
+    ...items,
+    ...defaultMedia.filter((defaultItem) => !items.some((item) => item.url === defaultItem.url)),
+  ];
 
   const handleDelete = async () => {
     if (!deleting) return;
@@ -173,7 +177,7 @@ export default function GalleryPage() {
             </div>
             {usingFallback && (
               <p className="mt-5 text-center text-xs text-ink-400">
-                Showing sample project photos. Administrators can add real photos and videos.
+                Showing project photos. Administrators can also add photos and videos.
               </p>
             )}
             {!usingFallback && error && (
